@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "causaldisc"
+version = "1.0.0"
+description = "CausalDiscForge — causal discovery (causal structure learning) with pure-numpy fallbacks + top open-source backends"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "晨星 (CJX0712)" }]
+keywords = ["causal-discovery", "causal-inference", "graph", "pc", "ges", "notears", "structure-learning"]
+dependencies = [
+    "numpy>=1.23,<3",
+    "scipy>=1.10,<1.17",
+    "scikit-learn>=1.0",
+    "networkx>=2.6",
+]
+
+[project.optional-dependencies]
+sota = [
+    "causal-learn>=0.1.4",
+    "pgmpy>=1.1",
+    "lingam>=1.8",
+    "optuna>=3.0",
+    "matplotlib>=3.5",
+]
+dev = ["pytest>=7.0", "ruff>=0.4"]
+
+[tool.setuptools.packages.find]
+include = ["causaldisc*"]
+
+[tool.ruff]
+line-length = 96
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B"]
+ignore = ["B008", "E501"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+addopts = "-q -W ignore::UserWarning"
